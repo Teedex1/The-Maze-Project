@@ -17,7 +17,7 @@ void horzIntersection(float, rayAngle)
 	float nextHorzTouchX, nextHorzTouchY, xintercept, yintercept, xstep, ystep;
 
 	foundHorzWallHit = false;
-	horzWallHit = horzWallHitY = horzWallContent = 0;
+	horzWallHitX = horzWallHitY = horzWallContent = 0;
 
 	yintercept = floor(player.y / TILE_SIZE) * TILE_SIZE;
 	yintercept += isRayFacingDown(rayAngle) ? TILE_SIZE : 0;
@@ -28,7 +28,8 @@ void horzIntersection(float, rayAngle)
 	ystep *= isRayFacingUp(rayAngle) ? -1 : 1;
 	xstep = TILE_SIZE / tan(rayAngle);
 	xstep *= (isRayFacingLeft(rayAngle) && xstep > 0) ? -1 : 1;
-	xstep *= (isRAyFacingRight(rayAngle) && xstep < 0) ? -1: 1;
+	xstep *= (isRAyFacingRight(rayAngle) && xstep < 0) ? -1 : 1;
+
 	nextHorzTouchX = xintercept;
 	nextHorzTouchY = yintercept;
 
@@ -42,13 +43,14 @@ void horzIntersection(float, rayAngle)
 			horzWallHitX = nextHorzTouchX;
 			horzWallHitY = nextHorzTouchY;
 			horzWallContent = getMapValue((int)(floor(yToCheck / TILE_SIZE),
-										(int)floor(xToCheck / TILE_SIZE));
-			foundHorWallHit = true;
+						(int)floor(xToCheck / TILE_SIZE)));
+			foundHorzWallHit = true;
 			break;
 		}
 		nextHorzTouchX += xstep;
 		nextHorzTouchY += ystep;
 	}
+}
 
 
 /**
@@ -59,7 +61,124 @@ void horzIntersection(float, rayAngle)
 
 void vertIntersection(float, rayAngle)
 {
-float nextVertTouchX, nextVertTouchY;
-floa
-	
+	float nextVertTouchX, nextVertTouchY;
+	float xintercept, yintercept, xstep, ystep;
 
+	foundVertWallHit = false;
+	vertWallHitX = 0;
+	vertWallhitY = 0;
+	vertWallhitContent = 0;
+
+	xintercept = floor(player.x / TILE_SIZE) * TILE_SIZE;
+	xintercept += isRayFacingRight(rayAngle) ? TILE_SIZE : 0;
+	yintercept = player.y + (intercept - player.x) * tan(rayAngle);
+
+	xstep = TILE_SIZE;
+	xstep *= isRayFacingLeft(rayAngle) ? -1 : 1;
+	ystep = TILE_SIZE * tan(rayAngle);
+	ystep *= (isRayFacingUp(rayAngle) && ystep > 0) ? -1 : 1;
+	ystep *= (isRayFacingDown(rayAngle) && ystep < 0) ? -1 : 1;
+	nextVertTouchX = xintercept;
+	nextVerTouchY = yintercept;
+
+	while (isInsideMap(nextVertTouchX, nextVertTouchY))
+	{
+		float xToCheck = nextVertTouchX + (isRayFacingLeft(rayAngle) ? -1 : 0);
+		float yToCheck = nextVertTouchY;
+
+		if (DetectCollision(xToCheck, yToCheck))
+		{
+			vertWallHitX = nextVertTouchX;
+			vertWallHitY = nextVertTouchY;
+			vertWallContent = getMapValue((int)floor(yToCheck / TILE_SIZE),
+					(int)floor(xToCheck / TILE_SIZE))
+			foundVertWallHit = true;
+			break;
+		}
+		nextVertTouchX += xstep;
+		nextVertTouchY += ystep;
+	}
+}
+
+/**
+ * castRay - asting of each ray
+ * @rayAngle: current ray Angle
+ * @stripId: ray strip identifier
+ */
+
+void castRay(float rayAngle, int stripId)
+{
+	float horzHitDistance, verHitDistance;
+
+	rayAngle = remainder(rayAngle, TWO_PI);
+	if (rayAngle < 0)
+		rayAngle = TWO_PI + rayAngle;
+
+	horzIntersection(rayAngle);
+
+	vertIntersection(rayAngle);
+
+	horzHitDistance = foundHorzWallHit
+		? distanceBetweenPoints(player.x, player.y, horzWallHitX, horzWallHitY)
+		: FLT_MAX;
+	vertHitDistance = foundVertWallHit
+		? distanceBetweenPoints(player.x, player.y, vertWallHitX, vertWallHitY)
+		: FLT_MAX;
+
+	if (vertHitDistance < horzHitDistance)
+	{
+		rays[stripId].distance = vertHitDistance;
+		rays[stripId].wallHitX = vertWallHitX;
+		rays[stripId].wallHitY = vertWallHitY;
+		rays[stripId].wallHitContent = vertWallContent;
+		rays[stripId].wasHitVertical = true;
+		rays[stripId].rayAngle = rayAngle;
+	}
+	else
+	{
+		rays[stripId].distance = vertHitDistance;
+		rays[stripId].wallHitX = vertWallHitX;
+		rays[stripId].wallHitY = vertWallHitY;
+		rays[stripId].wallHitContent = vertWallContent;
+		rays[stripId].wasHitVertical = false;
+		rays[stripId].rayAngle = rayAngle;
+	}
+}
+
+/**
+ * castAllRays - cast of all rays
+ *
+ *
+ */
+void castAllRays(void)
+{
+	int col;
+
+	for (col = 0; col < NUM_RAYS; col++)
+	{
+		float rayAngle = player.rotationAngle +
+			atan((col - NUMRAYS / 2) / PROJ_PLANE);
+		castRay(rayAngle, col);
+	}
+}
+
+/**
+ * renderRays - draw all the rays
+ *
+ */
+
+void renderRays(void)
+{
+	int i;
+
+	for (i = 0; i < NUM_RAYS; i += 50)
+	{
+		drawLine(
+				player.x * MINIMAP_SCALE_FACTOR,
+				player.y * MINIMAP_SCALE_FACTOR,
+				rays[i].wallHitX * MINIMAP_SCALE_FACTOR,
+				rays[i].wallHitY * MINIMAP_SCALE_FACTOR,
+				0xFF0000FF
+			);
+	}
+}
