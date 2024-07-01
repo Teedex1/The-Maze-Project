@@ -44,8 +44,8 @@ bool DetectCollision(float x, float y)
  */
 bool isInsideMap(float x, float y)
 {
-	return (x >= 0 && x <= MAP_NUM_COLS * TITLE_SIZE &&
-			      y >= 0 && y <= MAP_NUM_ROWS * TITLE_SIZE);
+	return (x >= 0 && x <= MAP_NUM_COLS * TILE_SIZE &&
+			      y >= 0 && y <= MAP_NUM_ROWS * TILE_SIZE);
 }
 
 /**

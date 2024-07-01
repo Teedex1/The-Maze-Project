@@ -37,7 +37,7 @@ void drawLine(int x0, int y0, int x1, int y1, color_t color)
 	longestSideLength = (abs(deltaX) >= abs(deltaY)) ? abs(deltaX) : abs(deltaY);
 
 	xIncrement = deltaX / (float)longestSideLength;
-	yIncrement = deltaY / (float)longestSidelength;
+	yIncrement = deltaY / (float)longestSideLength;
 
 	currentX = x0;
 	currentY = y0;

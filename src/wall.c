@@ -39,13 +39,13 @@ void renderFloor(int wallBottomPixel, color_t *texelColor, int x)
 		distance = (ratio * PROJ_PLANE)
 					/ cos (rays[x].rayAngle - player.rotationAngle);
 
-		textureOffsetY = (int)abs((distance * sin(rays[x].rayAngle)) + player.y);
-		textureOffsetX = (int)abs((distance * sin(rays[x].rayAngle)) + player.x);
+		textureOffsetY = abs((int)((distance * sin(rays[x].rayAngle)) + player.y));
+		textureOffsetX = abs((int)((distance * cos(rays[x].rayAngle)) + player.x));
 
-		textureOffsetX = (int)(abs(textureOffsetX * texture_width / 30)
+		textureOffsetX = abs((textureOffsetX * texture_width / 30)
 								% texture_width);
-		textureOffsetY = (int)(abs(textureOffsetY * texture_height / 30)
-								& texture_height);
+		textureOffsetY = abs((textureOffsetY * texture_height / 30)
+								% texture_height);
 
 		*texelColor = wallTextures[4].
 					texture_buffer[(texture_width * textureOffsetY) + textureOffsetX];
@@ -73,16 +73,16 @@ void renderCeil(int wallTopPixel, color_t *texelColor, int x)
 
 		ratio = player.height / (y - SCREEN_HEIGHT / 2);
 		distance = (ratio * PROJ_PLANE)
-					/ cos(ray[x].rayAngle - player.rotationAngle);
-		textureOffsetY = (int)abs((distance * sin(rays[x].rayAngle)) + player.y);
-		textureOffsetX = (int)abs((distance * sin(rays[x].rayAngle)) + player.x);
+					/ cos(rays[x].rayAngle - player.rotationAngle);
+		textureOffsetY = abs((int)((distance * sin(rays[x].rayAngle)) + player.y));
+		textureOffsetX = abs((int)((distance * cos(rays[x].rayAngle)) + player.x));
 		
-		textureOffsetX = (int)(abs(textureOffsetX * texture_width / 40)
+		textureOffsetX = abs((textureOffsetX * texture_width / 40)
 								% texture_width);
-		textureOffsetY = (int)(abs(textureOffsetY * texture_height / 40)
-								& texture_height);
+		textureOffsetY = abs((textureOffsetY * texture_height / 40)
+								% texture_height);
 		
-		*texelColor = wallTextures[4].
+		*texelColor = wallTextures[6].
 					texture_buffer[(texture_width * textureOffsetY) + textureOffsetX];
 		drawPixel(x, y, *texelColor);
 	}

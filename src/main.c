@@ -19,8 +19,8 @@ void setup_game(void)
 	player.walkSpeed = 100;
 	player.turnDirection = 0;
 	player.turnSpeed = 45 * (PI / 180);
-	player.rotationAngle = PI / 2;
-	WallTexturesready();
+	player.rotationAngle = PI / 2;	
+	/**WallTexturesready();*/
 }
 
 /**

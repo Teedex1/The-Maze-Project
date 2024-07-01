@@ -28,7 +28,7 @@ void horzIntersection(float rayAngle)
 	ystep *= isRayFacingUp(rayAngle) ? -1 : 1;
 	xstep = TILE_SIZE / tan(rayAngle);
 	xstep *= (isRayFacingLeft(rayAngle) && xstep > 0) ? -1 : 1;
-	xstep *= (isRAyFacingRight(rayAngle) && xstep < 0) ? -1 : 1;
+	xstep *= (isRayFacingRight(rayAngle) && xstep < 0) ? -1 : 1;
 
 	nextHorzTouchX = xintercept;
 	nextHorzTouchY = yintercept;
@@ -42,8 +42,8 @@ void horzIntersection(float rayAngle)
 		{
 			horzWallHitX = nextHorzTouchX;
 			horzWallHitY = nextHorzTouchY;
-			horzWallContent = getMapValue((int)(floor(yToCheck / TILE_SIZE),
-						(int)floor(xToCheck / TILE_SIZE)));
+			horzWallContent = getMapValue((int)floor(yToCheck / TILE_SIZE),
+						(int)floor(xToCheck / TILE_SIZE));
 			foundHorzWallHit = true;
 			break;
 		}
@@ -66,12 +66,12 @@ void vertIntersection(float rayAngle)
 
 	foundVertWallHit = false;
 	vertWallHitX = 0;
-	vertWallhitY = 0;
-	vertWallhitContent = 0;
+	vertWallHitY = 0;
+	vertWallContent = 0;
 
 	xintercept = floor(player.x / TILE_SIZE) * TILE_SIZE;
 	xintercept += isRayFacingRight(rayAngle) ? TILE_SIZE : 0;
-	yintercept = player.y + (intercept - player.x) * tan(rayAngle);
+	yintercept = player.y + (xintercept - player.x) * tan(rayAngle);
 
 	xstep = TILE_SIZE;
 	xstep *= isRayFacingLeft(rayAngle) ? -1 : 1;
@@ -79,7 +79,7 @@ void vertIntersection(float rayAngle)
 	ystep *= (isRayFacingUp(rayAngle) && ystep > 0) ? -1 : 1;
 	ystep *= (isRayFacingDown(rayAngle) && ystep < 0) ? -1 : 1;
 	nextVertTouchX = xintercept;
-	nextVerTouchY = yintercept;
+	nextVertTouchY = yintercept;
 
 	while (isInsideMap(nextVertTouchX, nextVertTouchY))
 	{
@@ -91,7 +91,7 @@ void vertIntersection(float rayAngle)
 			vertWallHitX = nextVertTouchX;
 			vertWallHitY = nextVertTouchY;
 			vertWallContent = getMapValue((int)floor(yToCheck / TILE_SIZE),
-					(int)floor(xToCheck / TILE_SIZE))
+										(int)floor(xToCheck / TILE_SIZE));
 			foundVertWallHit = true;
 			break;
 		}
