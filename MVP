@@ -1,0 +1,51 @@
+THE MAZE PROJECT - MVP
+(A 3D Game Created with SDL2)
+
+Minimum Viable Product (MVP) for the Maze Game with SDL2:
+Overview:
+
+Walls: Create a 2D array to represent the maze structure and render walls using the SDL2 graphics library. Walls should be displayed as rectangles or lines.
+
+Define a 2D array to store the maze layout.
+Use the SDL2 graphics library to draw walls by rendering rectangles or lines.
+Player Orientation: Control the player's movement and rotation using the arrow keys. SDL_Event will be used to handle user inputs.
+
+Implement a function to handle user inputs using SDL_Event.
+Update the player's position and orientation based on the received inputs.
+Movement: Implement basic player movement logic. The player should be able to move forward, backward, left, and right within the maze.
+
+Implement a function to update the player's position based on current orientation and inputs.
+Collision Detection: Ensure the player cannot pass through walls. If a collision is detected, the player's movement should be halted.
+
+Implement a function to check for collisions between the player and the walls.
+Stop the player's movement upon collision detection.
+Maze Parsing: Develop a simple parser to read maze data from a text file and store it in a 2D array.
+
+Implement a function to read maze data from a text file.
+Store the maze data in the 2D array.
+Rendering the Maze: Display the maze using the stored 2D array data. Differentiate walls and ground/ceiling with distinct colors.
+
+Use the 2D array data to draw the maze.
+Apply different colors to distinguish between walls and ground/ceiling.
+Textures: Apply basic textures to the walls using SDL2’s texture rendering functions.
+
+Implement a function to load wall textures.
+Use SDL2's texture rendering functions to apply textures to the walls.
+These features constitute the essential components for creating a basic maze game using SDL2.
+
+Data Modeling
+User Story
+
+End users want to play a maze game using SDL2 for entertainment and to challenge themselves in terms of speed and accuracy.
+
+Main Menu: Upon starting the game, users expect to see a main menu allowing them to start a new game, load a saved game, or quit. For a new game, they want to select the maze's difficulty level, including its size and the number of obstacles.
+
+Gameplay: During the game, users want to see the maze on the screen and control a character using the arrow keys. The character should move smoothly and without lag. A timer should display the remaining time to complete the maze, and a score should reflect their progress.
+
+In-game Elements: Users want to collect coins or other rewards to increase their score and face obstacles that slow them down or make navigation harder.
+
+Completion: Upon reaching the maze's end, users expect a congratulatory message displaying their final score and completion time. They also want the option to save their game for future play.
+
+Audio and Visuals: Users desire sound effects for actions like collecting coins or hitting obstacles, and background music to enhance the game’s excitement. High-quality graphics and animations are also essential to keep the game engaging and visually appealing.
+
+These elements ensure a comprehensive and enjoyable user experience for the maze game created with SDL2.
