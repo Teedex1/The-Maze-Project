@@ -67,5 +67,5 @@ void handleInput(void)
 	else if (event.type == SDL_KEYDOWN)
 		SDL_KEYDOWN_FUNC(event);
 	else if (event.type == SDL_KEYUP)
-		SDL_KEYUP_FUNC(Event);
+		SDL_KEYUP_FUNC(event);
 }

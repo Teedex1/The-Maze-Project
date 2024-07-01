@@ -20,7 +20,7 @@ void setup_game(void)
 	player.turnDirection = 0;
 	player.turnSpeed = 45 * (PI / 180);
 	player.rotationAngle = PI / 2;
-	wallTexturesready();
+	WallTexturesready();
 }
 
 /**
@@ -30,7 +30,7 @@ void setup_game(void)
 void update_game(void)
 {
 	float DeltaTime;
-	int timeTowait = FRAME_TIME_LENGTH - (SDL_GetTicks() - TicksLastFrame);
+	int timeToWait = FRAME_TIME_LENGTH - (SDL_GetTicks() - TicksLastFrame);
 
 	if (timeToWait > 0 && timeToWait <= FRAME_TIME_LENGTH)
 	{
@@ -67,7 +67,7 @@ void render_game(void)
  */
 void destroy_game(void)
 {
-	freeWallTexures();
+	freeWallTextures();
 	destroyWindow();
 }
 

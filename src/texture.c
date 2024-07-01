@@ -33,7 +33,7 @@ void WallTextureready(void)
 				wallTextures[i].upngTexture = upng;
 				wallTextures[i].width = upng_get_width(upng);
 				wallTextures[i].height = upng_get_height(upng);
-				wallTexture[i].texture_buffer = (color_t *)upng_get_buffer(upng);
+				wallTextures[i].texture_buffer = (color_t *)upng_get_buffer(upng);
 			}
 		}
 	}

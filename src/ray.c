@@ -4,7 +4,7 @@ ray_t rays[NUM_RAYS];
 
 static bool foundHorzWallHit, foundVertWallHit;
 static float horzWallHitX, horzWallHitY, vertWallHitX, vertWallHitY;
-static int horzaWallContent, verWallContent;
+static int horzWallContent, vertWallContent;
 
 
 /**
@@ -12,7 +12,7 @@ static int horzaWallContent, verWallContent;
  * @rayAngle: current ray angle
  *
  */
-void horzIntersection(float, rayAngle)
+void horzIntersection(float rayAngle)
 {
 	float nextHorzTouchX, nextHorzTouchY, xintercept, yintercept, xstep, ystep;
 
@@ -59,7 +59,7 @@ void horzIntersection(float, rayAngle)
  *
  */
 
-void vertIntersection(float, rayAngle)
+void vertIntersection(float rayAngle)
 {
 	float nextVertTouchX, nextVertTouchY;
 	float xintercept, yintercept, xstep, ystep;
@@ -108,7 +108,7 @@ void vertIntersection(float, rayAngle)
 
 void castRay(float rayAngle, int stripId)
 {
-	float horzHitDistance, verHitDistance;
+	float horzHitDistance, vertHitDistance;
 
 	rayAngle = remainder(rayAngle, TWO_PI);
 	if (rayAngle < 0)
@@ -157,7 +157,7 @@ void castAllRays(void)
 	for (col = 0; col < NUM_RAYS; col++)
 	{
 		float rayAngle = player.rotationAngle +
-			atan((col - NUMRAYS / 2) / PROJ_PLANE);
+			atan((col - NUM_RAYS / 2) / PROJ_PLANE);
 		castRay(rayAngle, col);
 	}
 }

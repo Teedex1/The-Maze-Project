@@ -29,7 +29,7 @@ void drawRect(int x, int y, int width, int height, color_t color)
 void drawLine(int x0, int y0, int x1, int y1, color_t color)
 {
 	float xIncrement, yIncrement, currentX, currentY;
-	int i, longestSideLenght, deltaX, deltaY;
+	int i, longestSideLength, deltaX, deltaY;
 
 	deltaX = (x1 - x0);
 	deltaY = (y1 - y0);
@@ -37,17 +37,15 @@ void drawLine(int x0, int y0, int x1, int y1, color_t color)
 	longestSideLength = (abs(deltaX) >= abs(deltaY)) ? abs(deltaX) : abs(deltaY);
 
 	xIncrement = deltaX / (float)longestSideLength;
-	yIncrement = deltaY / (float)longestSidelenght;
+	yIncrement = deltaY / (float)longestSidelength;
 
 	currentX = x0;
 	currentY = y0;
 
 	for (i = 0; i < longestSideLength; i++)
 	{
-		drawPixel(round(currentX), round(curentY), color);
+		drawPixel(round(currentX), round(currentY), color);
 		currentX += xIncrement;
 		currentY += yIncrement;
 	}
 }
-
-

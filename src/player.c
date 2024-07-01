@@ -15,7 +15,7 @@ void movePlayer(float DeltaTime)
 	newPlayerX = player.x + cos(player.rotationAngle) * moveStep;
 	newPlayerY = player.y + sin(player.rotationAngle) * moveStep;
 
-	if (!detectCollision(newPlayerX, newPlayerY))
+	if (!DetectCollision(newPlayerX, newPlayerY))
 	{
 		player.x = newPlayerX;
 		player.y = newPlayerY;
@@ -28,7 +28,7 @@ void movePlayer(float DeltaTime)
  */
 void renderPlayer(void)
 {
-	drewRect(
+	drawRect(
 			player.x * MINIMAP_SCALE_FACTOR,
 			player.y * MINIMAP_SCALE_FACTOR,
 			player.width * MINIMAP_SCALE_FACTOR,
