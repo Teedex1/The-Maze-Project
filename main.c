@@ -9,9 +9,9 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-int SDL_main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] )
+int main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] )
 {
-	setenv("XDG_RUNTIME_DIR", "/tmp", 1); //Added
+	/*setenv("XDG_RUNTIME_DIR", "/tmp", 1); //Added*/
 
 	SDL_Window* window = NULL;
 
