@@ -11,6 +11,8 @@ const int SCREEN_HEIGHT = 480;
 
 int SDL_main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] )
 {
+	setenv("XDG_RUNTIME_DIR", "/tmp", 1); //Added
+
 	SDL_Window* window = NULL;
 
 	SDL_Surface* screenSurface = NULL;
