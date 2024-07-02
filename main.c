@@ -9,7 +9,7 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-int main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] )
+int SDL_main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] )
 {
 	SDL_Window* window = NULL;
 
