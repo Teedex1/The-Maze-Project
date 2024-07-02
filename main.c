@@ -37,7 +37,7 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] 
 	SDL_Quit();
 
 	return 0;
-=======
+
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
         printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
@@ -86,5 +86,4 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] 
     SDL_Quit();
 
     return 0;
->>>>>>> bdea74e5179bf7bbec7da8c99334353e51f96ada
 }
